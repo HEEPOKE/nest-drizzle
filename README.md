@@ -44,8 +44,22 @@ docker compose up -d
 
 ## Drizzle
 
+### generate
 ```bash
-# migrations
-pnpm tsx src/apis/drizzle/migrations/index.ts
+yarn drizzle-kit generate --name ...
 ```
 
+### push
+```bash
+yarn drizzle-kit push
+```
+
+### drop
+```bash
+yarn drizzle-kit drop
+```
+
+### studio
+```bash
+yarn drizzle-kit studio
+```
