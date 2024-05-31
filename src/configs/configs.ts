@@ -2,7 +2,12 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-const config = {
+const configs = {
+  DB_HOST: process.env.DB_HOST,
+  DB_PORT: process.env.DB_PORT,
+  DB_NAME: process.env.DB_NAME,
+  DB_USERNAME: process.env.DB_USERNAME,
+  DB_PASSWORD: process.env.DB_PASSWORD,
   PORT: process.env.PORT,
   LOCAL_HOST: process.env.LOCAL_HOST,
   PRODUCTION_HOST: process.env.PRODUCTION_HOST,
@@ -21,6 +26,11 @@ const config = {
 };
 
 const globalConfig = () => ({
+  DB_HOST: process.env.DB_HOST,
+  DB_PORT: process.env.DB_PORT,
+  DB_NAME: process.env.DB_NAME,
+  DB_USERNAME: process.env.DB_USERNAME,
+  DB_PASSWORD: process.env.DB_PASSWORD,
   PORT: process.env.PORT,
   LOCAL_HOST: process.env.LOCAL_HOST,
   PRODUCTION_HOST: process.env.PRODUCTION_HOST,
@@ -38,4 +48,4 @@ const globalConfig = () => ({
   MAX: 1000000,
 });
 
-export { config, globalConfig };
+export { configs, globalConfig };
