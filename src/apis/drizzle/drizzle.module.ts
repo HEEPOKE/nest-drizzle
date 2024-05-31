@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DrizzlePostgresModule } from '@knaadh/nestjs-drizzle-postgres';
-import * as schema from 'src/schemas/index'
+import * as schema from 'src/schemas';
+import { DB_TAG } from 'src/constants';
 
 Module({
   imports: [
     DrizzlePostgresModule.registerAsync({
       imports: [ConfigModule],
-      tag: 'POSTGRES',
+      tag: DB_TAG,
       useFactory: async (configService: ConfigService) => ({
         postgres: {
           url: configService.get<string>('DATABASE_URL'),
@@ -22,6 +23,6 @@ Module({
       inject: [ConfigService],
     }),
   ],
-  providers: [],
+  exports: [DrizzlePostgresModule],
 });
 export class DrizzleModule {}
