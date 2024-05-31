@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DrizzlePostgresModule } from '@knaadh/nestjs-drizzle-postgres';
-import * as schema from '../../schemas/index'
+import * as schema from 'src/schemas/index'
 
 Module({
   imports: [

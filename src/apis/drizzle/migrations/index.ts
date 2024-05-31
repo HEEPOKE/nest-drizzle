@@ -1,5 +1,5 @@
 import { migrate } from 'drizzle-orm/postgres-js/migrator';
-import { connection, migrationClient } from '../clients';
+import { migrationClient, connection } from '../clients';
 
 migrate(migrationClient, { migrationsFolder: './drizzles' });
 
