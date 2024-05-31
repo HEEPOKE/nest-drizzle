@@ -3,4 +3,4 @@ import { migrationClient, connection } from '../clients';
 
 migrate(migrationClient, { migrationsFolder: './drizzles' });
 
-connection.end()
+connection.end();
