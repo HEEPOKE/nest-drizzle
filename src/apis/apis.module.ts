@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
-import { DrizzleModule } from './drizzle/drizzle.module';
 import { AccountsModule } from './modules/accounts/accounts.module';
 import { globalConfig } from 'src/configs/configs';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { DrizzlePGModule } from '@knaadh/nestjs-drizzle-pg';
+import { databaseSchema } from 'src/schemas';
 
 @Module({
   imports: [
@@ -12,7 +13,22 @@ import { ConfigModule } from '@nestjs/config';
       envFilePath: '.env',
       load: [globalConfig],
     }),
-    DrizzleModule,
+    DrizzlePGModule.registerAsync({
+      tag: 'DB_PROD',
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory(configService: ConfigService) {
+        return {
+          pg: {
+            connection: 'client',
+            config: {
+              connectionString: configService.get<string>('DATABASE_URL'),
+            },
+          },
+          config: { schema: databaseSchema },
+        };
+      },
+    }),
     AccountsModule,
   ],
   providers: [],
