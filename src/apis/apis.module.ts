@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { AccountsModule } from './modules/accounts/accounts.module';
-import { globalConfig } from 'src/configs/configs';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DrizzlePGModule } from '@knaadh/nestjs-drizzle-pg';
+import { globalConfig } from 'src/configs/configs';
 import { databaseSchema } from 'src/schemas';
+import { AccountsModule } from './modules/accounts/accounts.module';
 
 @Module({
   imports: [
